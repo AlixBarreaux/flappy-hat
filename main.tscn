@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://c3jf4o1f4pc4c"]
+
+[ext_resource type="Texture2D" uid="uid://1pwh40vf6kp8" path="res://assets/middleground_desert.png" id="1_wcrsp"]
+[ext_resource type="Texture2D" uid="uid://cgbu5muk28jsb" path="res://assets/desert_foreground.png" id="2_sl184"]
+[ext_resource type="Script" path="res://scripts/camera.gd" id="3_p52fh"]
+[ext_resource type="PackedScene" uid="uid://cvfus84lv04ta" path="res://scenes/hero.tscn" id="4_dv7uu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vquv8"]
+size = Vector2(1920, 135)
+
+[node name="Main" type="Node"]
+
+[node name="World" type="Node2D" parent="."]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="World"]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="World/ParallaxBackground"]
+motion_scale = Vector2(0.3, 0.3)
+motion_mirroring = Vector2(1920, 0)
+
+[node name="Sprite2D2" type="Sprite2D" parent="World/ParallaxBackground/ParallaxLayer"]
+position = Vector2(960, 835)
+texture = ExtResource("1_wcrsp")
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="World/ParallaxBackground"]
+motion_scale = Vector2(0.6, 0.6)
+motion_mirroring = Vector2(1920, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="World/ParallaxBackground/ParallaxLayer2"]
+position = Vector2(960, 841)
+texture = ExtResource("2_sl184")
+
+[node name="Camera2D" type="Camera2D" parent="World"]
+position = Vector2(960, 540)
+script = ExtResource("3_p52fh")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="World/Camera2D"]
+position = Vector2(-960, 460)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Camera2D/StaticBody2D"]
+position = Vector2(960, 13)
+shape = SubResource("RectangleShape2D_vquv8")
+
+[node name="Hero" parent="World/Camera2D" instance=ExtResource("4_dv7uu")]

@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://cvfus84lv04ta"]
+
+[ext_resource type="Script" path="res://hero.gd" id="1_vi73n"]
+[ext_resource type="Texture2D" uid="uid://cv5tvsbcg4ukj" path="res://assets/cow_boy_hat.png" id="2_o8h28"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2glrc"]
+size = Vector2(130, 44)
+
+[node name="Hero" type="CharacterBody2D"]
+script = ExtResource("1_vi73n")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_2glrc")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_o8h28")
