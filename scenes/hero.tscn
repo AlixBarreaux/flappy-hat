@@ -8,6 +8,8 @@ size = Vector2(130, 44)
 
 [node name="Hero" type="CharacterBody2D"]
 script = ExtResource("1_vi73n")
+jump_force = 3000.0
+max_jump_force = 3000.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_2glrc")

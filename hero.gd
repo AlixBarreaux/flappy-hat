@@ -5,12 +5,12 @@ class_name Hero
 # ----------------- DECLARE VARIABLES -----------------
 
 
-var gravity: float = 900.0
-var jump_force: float = 6000.0
+@export var gravity: float = 250.0
+@export var jump_force: float = 3300.0
 #var rotation_speed:  = 2
 
-var max_gravity: float = 450.0
-var max_jump_force = 6000.0
+@export var max_gravity: float = 600.0
+@export var max_jump_force = 3300.0
 
 
 # ----------------- RUN CODE -----------------
@@ -24,7 +24,6 @@ func _physics_process(delta: float) -> void:
 	self.velocity.y = min(self.velocity.y, max_gravity)
 	
 	self.move_and_slide()
-	print("velocity: ", velocity)
 
 
 func _unhandled_key_input(event: InputEvent) -> void:

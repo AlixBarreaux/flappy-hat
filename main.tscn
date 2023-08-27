@@ -1,12 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://c3jf4o1f4pc4c"]
+[gd_scene load_steps=8 format=3 uid="uid://c3jf4o1f4pc4c"]
 
 [ext_resource type="Texture2D" uid="uid://1pwh40vf6kp8" path="res://assets/middleground_desert.png" id="1_wcrsp"]
 [ext_resource type="Texture2D" uid="uid://cgbu5muk28jsb" path="res://assets/desert_foreground.png" id="2_sl184"]
 [ext_resource type="Script" path="res://scripts/camera.gd" id="3_p52fh"]
 [ext_resource type="PackedScene" uid="uid://cvfus84lv04ta" path="res://scenes/hero.tscn" id="4_dv7uu"]
+[ext_resource type="Script" path="res://arena_boundaries.gd" id="4_fmlmj"]
+[ext_resource type="PackedScene" uid="uid://c6wtl074b6vv" path="res://scenes/obstacle.tscn" id="5_5y2s5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vquv8"]
-size = Vector2(1920, 135)
+size = Vector2(1920, 134)
 
 [node name="Main" type="Node"]
 
@@ -30,15 +32,58 @@ motion_mirroring = Vector2(1920, 0)
 position = Vector2(960, 841)
 texture = ExtResource("2_sl184")
 
-[node name="Camera2D" type="Camera2D" parent="World"]
-position = Vector2(960, 540)
+[node name="MovingObjects" type="Node2D" parent="World"]
+position = Vector2(0, 1000)
 script = ExtResource("3_p52fh")
+scroll_speed = 800.0
 
-[node name="StaticBody2D" type="StaticBody2D" parent="World/Camera2D"]
+[node name="Camera2D" type="Camera2D" parent="World/MovingObjects"]
+position = Vector2(960, -460)
+
+[node name="ArenaBoundaries" type="StaticBody2D" parent="World/MovingObjects/Camera2D"]
 position = Vector2(-960, 460)
+script = ExtResource("4_fmlmj")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Camera2D/StaticBody2D"]
-position = Vector2(960, 13)
+[node name="BoundaryTop" type="CollisionShape2D" parent="World/MovingObjects/Camera2D/ArenaBoundaries"]
+position = Vector2(960, -869)
 shape = SubResource("RectangleShape2D_vquv8")
 
-[node name="Hero" parent="World/Camera2D" instance=ExtResource("4_dv7uu")]
+[node name="BoundaryBottom" type="CollisionShape2D" parent="World/MovingObjects/Camera2D/ArenaBoundaries"]
+position = Vector2(960, -75)
+shape = SubResource("RectangleShape2D_vquv8")
+
+[node name="Hero" parent="World/MovingObjects/Camera2D" instance=ExtResource("4_dv7uu")]
+position = Vector2(-455, 0)
+
+[node name="Obstacles" type="Node2D" parent="World"]
+
+[node name="Obstacle" parent="World/Obstacles" node_paths=PackedStringArray("camera", "boundary_bottom_collision_shape") instance=ExtResource("5_5y2s5")]
+position = Vector2(3995, 540)
+camera = NodePath("../../MovingObjects/Camera2D")
+boundary_bottom_collision_shape = NodePath("../../MovingObjects/Camera2D/ArenaBoundaries/BoundaryBottom")
+
+[node name="Obstacle2" parent="World/Obstacles" node_paths=PackedStringArray("camera", "boundary_bottom_collision_shape") instance=ExtResource("5_5y2s5")]
+position = Vector2(4395, 540)
+camera = NodePath("../../MovingObjects/Camera2D")
+boundary_bottom_collision_shape = NodePath("../../MovingObjects/Camera2D/ArenaBoundaries/BoundaryBottom")
+
+[node name="Obstacle3" parent="World/Obstacles" node_paths=PackedStringArray("camera", "boundary_bottom_collision_shape") instance=ExtResource("5_5y2s5")]
+position = Vector2(4795, 540)
+camera = NodePath("../../MovingObjects/Camera2D")
+boundary_bottom_collision_shape = NodePath("../../MovingObjects/Camera2D/ArenaBoundaries/BoundaryBottom")
+
+[node name="Obstacle4" parent="World/Obstacles" node_paths=PackedStringArray("camera", "boundary_bottom_collision_shape") instance=ExtResource("5_5y2s5")]
+position = Vector2(5195, 540)
+camera = NodePath("../../MovingObjects/Camera2D")
+boundary_bottom_collision_shape = NodePath("../../MovingObjects/Camera2D/ArenaBoundaries/BoundaryBottom")
+
+[node name="BoundaryPoints" type="Node2D" parent="World"]
+
+[node name="BoundaryUpPoint" type="Marker2D" parent="World/BoundaryPoints"]
+position = Vector2(960, 0)
+
+[node name="BoundaryDownPoint" type="Marker2D" parent="World/BoundaryPoints"]
+position = Vector2(960, 946)
+
+[node name="BoundaryRightPoint" type="Marker2D" parent="World/BoundaryPoints"]
+position = Vector2(1920, 540)
