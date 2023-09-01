@@ -1,6 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://c6wtl074b6vv"]
+[gd_scene load_steps=6 format=3 uid="uid://c6wtl074b6vv"]
 
 [ext_resource type="Script" path="res://scripts/obstacle.gd" id="1_bb731"]
+[ext_resource type="Script" path="res://scripts/kill_zone.gd" id="2_ahofj"]
+[ext_resource type="AudioStream" uid="uid://6wt63bwojmqv" path="res://assets/audio/sound-effects/obstacle_passed.wav" id="3_vokfb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f6fs2"]
 size = Vector2(100, 870)
@@ -8,26 +10,36 @@ size = Vector2(100, 870)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vpwqo"]
 size = Vector2(100, 370)
 
-[node name="Obstacle" type="StaticBody2D"]
+[node name="Obstacle" type="Node2D"]
 position = Vector2(0, 540)
 script = ExtResource("1_bb731")
 
-[node name="CollisionShape2DTop" type="CollisionShape2D" parent="."]
+[node name="KillZone" type="Area2D" parent="."]
+script = ExtResource("2_ahofj")
+
+[node name="CollisionShape2DTop" type="CollisionShape2D" parent="KillZone"]
 position = Vector2(0, -620)
 shape = SubResource("RectangleShape2D_f6fs2")
+debug_color = Color(1, 0.196078, 0.145098, 0.419608)
 
-[node name="CollisionShape2DBottom" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2DBottom" type="CollisionShape2D" parent="KillZone"]
 position = Vector2(0, 620)
 shape = SubResource("RectangleShape2D_f6fs2")
+debug_color = Color(1, 0.196078, 0.145098, 0.419608)
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 scale = Vector2(6.1, 114.45)
 
 [node name="ObstaclePassedZone" type="Area2D" parent="."]
+collision_layer = 4
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="ObstaclePassedZone"]
+stream = ExtResource("3_vokfb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ObstaclePassedZone"]
-position = Vector2(50, 0)
 shape = SubResource("RectangleShape2D_vpwqo")
+debug_color = Color(0, 0.921569, 0.34902, 0.419608)
 
+[connection signal="body_entered" from="KillZone" to="KillZone" method="_on_body_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
-[connection signal="body_entered" from="ObstaclePassedZone" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="ObstaclePassedZone" to="." method="_on_obstacle_passed_zone_body_exited"]

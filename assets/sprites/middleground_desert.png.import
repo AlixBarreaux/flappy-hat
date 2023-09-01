@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cgbu5muk28jsb"
-path="res://.godot/imported/desert_foreground.png-27bec97158da2ea537477e34eba8ba85.ctex"
+uid="uid://1pwh40vf6kp8"
+path="res://.godot/imported/middleground_desert.png-bce08871dbdd84b6fe24b9690d1c47c0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/desert_foreground.png"
-dest_files=["res://.godot/imported/desert_foreground.png-27bec97158da2ea537477e34eba8ba85.ctex"]
+source_file="res://assets/sprites/middleground_desert.png"
+dest_files=["res://.godot/imported/middleground_desert.png-bce08871dbdd84b6fe24b9690d1c47c0.ctex"]
 
 [params]
 

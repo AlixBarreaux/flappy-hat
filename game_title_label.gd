@@ -1,18 +1,19 @@
-extends Node
+extends Label
+class_name GameTitleLabel
 
 
 # ----------------- DECLARE VARIABLES -----------------
-
 
 
 # ----------------- RUN CODE -----------------
 
 
 func _ready() -> void:
-	if OS.is_debug_build():
-		get_window().size = Vector2(1280.0, 720.0)
+	self.text = ProjectSettings.get("application/config/name")
 
-	TranslationServer.set_locale(OS.get_locale())
 
 # ----------------- DECLARE FUNCTIONS -----------------
+
+
+
 

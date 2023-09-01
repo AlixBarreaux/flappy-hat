@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://weeybc4svd5r"]
+
+[ext_resource type="Texture2D" uid="uid://dgolg8xmtd1lo" path="res://resume.png" id="1_q5obi"]
+[ext_resource type="Script" path="res://resume_button.gd" id="2_t42xy"]
+
+[node name="ResumeButton" type="TextureButton"]
+process_mode = 3
+focus_neighbor_left = NodePath("../QuitGameButton")
+focus_neighbor_top = NodePath("../QuitGameButton")
+focus_neighbor_right = NodePath("../QuitGameButton")
+focus_neighbor_bottom = NodePath("../QuitGameButton")
+focus_next = NodePath("../QuitGameButton")
+focus_previous = NodePath("../QuitGameButton")
+texture_normal = ExtResource("1_q5obi")
+script = ExtResource("2_t42xy")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

@@ -1,11 +1,16 @@
-[gd_scene load_steps=8 format=3 uid="uid://c3jf4o1f4pc4c"]
+[gd_scene load_steps=13 format=3 uid="uid://c3jf4o1f4pc4c"]
 
-[ext_resource type="Texture2D" uid="uid://1pwh40vf6kp8" path="res://assets/middleground_desert.png" id="1_wcrsp"]
-[ext_resource type="Texture2D" uid="uid://cgbu5muk28jsb" path="res://assets/desert_foreground.png" id="2_sl184"]
-[ext_resource type="Script" path="res://scripts/camera.gd" id="3_p52fh"]
+[ext_resource type="Texture2D" uid="uid://1pwh40vf6kp8" path="res://assets/sprites/middleground_desert.png" id="1_22ksx"]
+[ext_resource type="Texture2D" uid="uid://cgbu5muk28jsb" path="res://assets/sprites/desert_foreground.png" id="2_uhksl"]
+[ext_resource type="Script" path="res://scripts/moving_objects.gd" id="3_r72v1"]
+[ext_resource type="Script" path="res://scripts/arena_boundaries.gd" id="4_ah6g0"]
 [ext_resource type="PackedScene" uid="uid://cvfus84lv04ta" path="res://scenes/hero.tscn" id="4_dv7uu"]
-[ext_resource type="Script" path="res://arena_boundaries.gd" id="4_fmlmj"]
 [ext_resource type="PackedScene" uid="uid://c6wtl074b6vv" path="res://scenes/obstacle.tscn" id="5_5y2s5"]
+[ext_resource type="Script" path="res://scripts/obstacles.gd" id="6_bhj6l"]
+[ext_resource type="PackedScene" uid="uid://dstnujf2cevx" path="res://scenes/scores_manager.tscn" id="8_g1v0k"]
+[ext_resource type="PackedScene" uid="uid://b1sye4sdv81p1" path="res://scenes/GUI/score_gui.tscn" id="8_kg6j2"]
+[ext_resource type="PackedScene" uid="uid://mqll244bgqkv" path="res://game_over_gui.tscn" id="10_55lyn"]
+[ext_resource type="PackedScene" uid="uid://c2raowun2415o" path="res://pause_menu.tscn" id="11_b6xb7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vquv8"]
 size = Vector2(1920, 134)
@@ -22,7 +27,7 @@ motion_mirroring = Vector2(1920, 0)
 
 [node name="Sprite2D2" type="Sprite2D" parent="World/ParallaxBackground/ParallaxLayer"]
 position = Vector2(960, 835)
-texture = ExtResource("1_wcrsp")
+texture = ExtResource("1_22ksx")
 
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="World/ParallaxBackground"]
 motion_scale = Vector2(0.6, 0.6)
@@ -30,52 +35,46 @@ motion_mirroring = Vector2(1920, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="World/ParallaxBackground/ParallaxLayer2"]
 position = Vector2(960, 841)
-texture = ExtResource("2_sl184")
+texture = ExtResource("2_uhksl")
 
 [node name="MovingObjects" type="Node2D" parent="World"]
-position = Vector2(0, 1000)
-script = ExtResource("3_p52fh")
+script = ExtResource("3_r72v1")
 scroll_speed = 800.0
 
 [node name="Camera2D" type="Camera2D" parent="World/MovingObjects"]
-position = Vector2(960, -460)
+position = Vector2(960, 540)
 
 [node name="ArenaBoundaries" type="StaticBody2D" parent="World/MovingObjects/Camera2D"]
-position = Vector2(-960, 460)
-script = ExtResource("4_fmlmj")
+position = Vector2(-960, -540)
+script = ExtResource("4_ah6g0")
 
 [node name="BoundaryTop" type="CollisionShape2D" parent="World/MovingObjects/Camera2D/ArenaBoundaries"]
-position = Vector2(960, -869)
+position = Vector2(960, -210)
 shape = SubResource("RectangleShape2D_vquv8")
 
 [node name="BoundaryBottom" type="CollisionShape2D" parent="World/MovingObjects/Camera2D/ArenaBoundaries"]
-position = Vector2(960, -75)
+position = Vector2(960, 1367)
 shape = SubResource("RectangleShape2D_vquv8")
 
 [node name="Hero" parent="World/MovingObjects/Camera2D" instance=ExtResource("4_dv7uu")]
 position = Vector2(-455, 0)
 
-[node name="Obstacles" type="Node2D" parent="World"]
+[node name="Obstacles" type="Node2D" parent="World" node_paths=PackedStringArray("camera", "boundary_bottom_collision_shape")]
+script = ExtResource("6_bhj6l")
+camera = NodePath("../MovingObjects/Camera2D")
+boundary_bottom_collision_shape = NodePath("../MovingObjects/Camera2D/ArenaBoundaries/BoundaryBottom")
 
-[node name="Obstacle" parent="World/Obstacles" node_paths=PackedStringArray("camera", "boundary_bottom_collision_shape") instance=ExtResource("5_5y2s5")]
-position = Vector2(3995, 540)
-camera = NodePath("../../MovingObjects/Camera2D")
-boundary_bottom_collision_shape = NodePath("../../MovingObjects/Camera2D/ArenaBoundaries/BoundaryBottom")
+[node name="Obstacle" parent="World/Obstacles" instance=ExtResource("5_5y2s5")]
+position = Vector2(2148, 540)
 
-[node name="Obstacle2" parent="World/Obstacles" node_paths=PackedStringArray("camera", "boundary_bottom_collision_shape") instance=ExtResource("5_5y2s5")]
-position = Vector2(4395, 540)
-camera = NodePath("../../MovingObjects/Camera2D")
-boundary_bottom_collision_shape = NodePath("../../MovingObjects/Camera2D/ArenaBoundaries/BoundaryBottom")
+[node name="Obstacle2" parent="World/Obstacles" instance=ExtResource("5_5y2s5")]
+position = Vector2(2703, 540)
 
-[node name="Obstacle3" parent="World/Obstacles" node_paths=PackedStringArray("camera", "boundary_bottom_collision_shape") instance=ExtResource("5_5y2s5")]
-position = Vector2(4795, 540)
-camera = NodePath("../../MovingObjects/Camera2D")
-boundary_bottom_collision_shape = NodePath("../../MovingObjects/Camera2D/ArenaBoundaries/BoundaryBottom")
+[node name="Obstacle3" parent="World/Obstacles" instance=ExtResource("5_5y2s5")]
+position = Vector2(3258, 540)
 
-[node name="Obstacle4" parent="World/Obstacles" node_paths=PackedStringArray("camera", "boundary_bottom_collision_shape") instance=ExtResource("5_5y2s5")]
-position = Vector2(5195, 540)
-camera = NodePath("../../MovingObjects/Camera2D")
-boundary_bottom_collision_shape = NodePath("../../MovingObjects/Camera2D/ArenaBoundaries/BoundaryBottom")
+[node name="Obstacle4" parent="World/Obstacles" instance=ExtResource("5_5y2s5")]
+position = Vector2(3813, 540)
 
 [node name="BoundaryPoints" type="Node2D" parent="World"]
 
@@ -87,3 +86,18 @@ position = Vector2(960, 946)
 
 [node name="BoundaryRightPoint" type="Marker2D" parent="World/BoundaryPoints"]
 position = Vector2(1920, 540)
+
+[node name="ScoresManager" parent="." instance=ExtResource("8_g1v0k")]
+
+[node name="GUI" type="CanvasLayer" parent="."]
+
+[node name="ScoreGUI" parent="GUI" node_paths=PackedStringArray("scores_manager") instance=ExtResource("8_kg6j2")]
+scores_manager = NodePath("../../ScoresManager")
+
+[node name="GameOverGUI" parent="GUI" node_paths=PackedStringArray("scores_manager") instance=ExtResource("10_55lyn")]
+visible = false
+scores_manager = NodePath("../../ScoresManager")
+
+[node name="PauseMenu" parent="GUI" instance=ExtResource("11_b6xb7")]
+
+[node name="HighScoreBeatenSound" type="AudioStreamPlayer" parent="."]
