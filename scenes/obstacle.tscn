@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=3 uid="uid://c6wtl074b6vv"]
 
 [ext_resource type="Script" path="res://scripts/obstacle.gd" id="1_bb731"]
-[ext_resource type="Script" path="res://scripts/kill_zone.gd" id="2_ahofj"]
+[ext_resource type="PackedScene" uid="uid://b26afmw8l0jat" path="res://scenes/kill_zone.tscn" id="2_k3edo"]
 [ext_resource type="AudioStream" uid="uid://6wt63bwojmqv" path="res://assets/audio/sound-effects/obstacle_passed.wav" id="3_vokfb"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_f6fs2"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_us7ik"]
 size = Vector2(100, 870)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vpwqo"]
@@ -14,17 +14,16 @@ size = Vector2(100, 370)
 position = Vector2(0, 540)
 script = ExtResource("1_bb731")
 
-[node name="KillZone" type="Area2D" parent="."]
-script = ExtResource("2_ahofj")
+[node name="KillZone" parent="." instance=ExtResource("2_k3edo")]
 
 [node name="CollisionShape2DTop" type="CollisionShape2D" parent="KillZone"]
 position = Vector2(0, -620)
-shape = SubResource("RectangleShape2D_f6fs2")
+shape = SubResource("RectangleShape2D_us7ik")
 debug_color = Color(1, 0.196078, 0.145098, 0.419608)
 
 [node name="CollisionShape2DBottom" type="CollisionShape2D" parent="KillZone"]
 position = Vector2(0, 620)
-shape = SubResource("RectangleShape2D_f6fs2")
+shape = SubResource("RectangleShape2D_us7ik")
 debug_color = Color(1, 0.196078, 0.145098, 0.419608)
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
@@ -40,6 +39,5 @@ stream = ExtResource("3_vokfb")
 shape = SubResource("RectangleShape2D_vpwqo")
 debug_color = Color(0, 0.921569, 0.34902, 0.419608)
 
-[connection signal="body_entered" from="KillZone" to="KillZone" method="_on_body_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
 [connection signal="body_exited" from="ObstaclePassedZone" to="." method="_on_obstacle_passed_zone_body_exited"]

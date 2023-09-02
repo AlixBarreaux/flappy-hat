@@ -1,8 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://b1sye4sdv81p1"]
+[gd_scene load_steps=2 format=3 uid="uid://ckgq3ken1wg1d"]
 
-[ext_resource type="Script" path="res://scripts/gui/score_gui.gd" id="1_ups0m"]
+[ext_resource type="Script" path="res://scripts/gui/high_score_gui.gd" id="1_piu57"]
 
-[node name="ScoreGUI" type="Control"]
+[node name="HighScoreGUI" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -10,7 +10,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-script = ExtResource("1_ups0m")
+script = ExtResource("1_piu57")
 
 [node name="ScoreCounter" type="Label" parent="."]
 layout_mode = 1

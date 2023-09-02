@@ -1,15 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://c2raowun2415o"]
+[gd_scene load_steps=6 format=3 uid="uid://cpgwq645feqk5"]
 
-[ext_resource type="Script" path="res://pause_menu.gd" id="1_33fjg"]
 [ext_resource type="PackedScene" uid="uid://weeybc4svd5r" path="res://resume_button.tscn" id="1_e8te4"]
+[ext_resource type="Script" path="res://scenes/GUI/pause_menu.gd" id="1_iblhy"]
+[ext_resource type="Theme" uid="uid://bdanof2i81six" path="res://resources/theme_main.tres" id="1_u5x2h"]
 [ext_resource type="PackedScene" uid="uid://b8oc51q6nuc30" path="res://quit_game_button.tscn" id="2_wsf4n"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rdggc"]
-bg_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 64
-corner_radius_top_right = 64
-corner_radius_bottom_right = 64
-corner_radius_bottom_left = 64
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q72ky"]
 bg_color = Color(1, 1, 1, 1)
@@ -23,7 +17,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-script = ExtResource("1_33fjg")
+theme = ExtResource("1_u5x2h")
+script = ExtResource("1_iblhy")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
@@ -38,7 +33,6 @@ offset_right = 433.0
 offset_bottom = 384.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_rdggc")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
 layout_mode = 1

@@ -13,6 +13,7 @@ class_name PauseMenu
 
 func _ready() -> void:
 	self.panel.hide()
+	self._initialize_signals()
 
 
 func _unhandled_key_input(event: InputEvent) -> void:
@@ -21,6 +22,14 @@ func _unhandled_key_input(event: InputEvent) -> void:
 
 
 # ----------------- DECLARE FUNCTIONS -----------------
+
+
+func on_game_over() -> void:
+	self.hide()
+
+
+func _initialize_signals() -> void:
+	Events.game_over.connect(on_game_over)
 
 
 func set_paused(value: bool) -> void:

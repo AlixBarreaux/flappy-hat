@@ -1,0 +1,85 @@
+[gd_scene load_steps=3 format=3 uid="uid://8loeelhf8y7q"]
+
+[ext_resource type="Theme" uid="uid://bdanof2i81six" path="res://resources/theme_main.tres" id="1_qbc5j"]
+[ext_resource type="Script" path="res://scenes/GUI/credits_menu.gd" id="2_57rre"]
+
+[node name="CreditsMenu" type="Control" node_paths=PackedStringArray("first_element_to_focus")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_qbc5j")
+script = ExtResource("2_57rre")
+first_element_to_focus = NodePath("Panel/BackButton")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TitleLabel" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -120.0
+offset_top = 74.0
+offset_right = 120.0
+offset_bottom = 148.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 70
+text = "Credits"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 242.0
+offset_bottom = -256.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="BeeperFontLink" type="LinkButton" parent="Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_mode = 2
+text = "Beeper Font"
+uri = "https://www.fontspace.com/beeper-font-f7374"
+
+[node name="FunnyCartoonSound" type="LinkButton" parent="Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_mode = 2
+text = "Funny Cartoon Sound Effects | No Copyright"
+uri = "https://youtube.com/watch?v=VmgKryu4__k"
+
+[node name="BackButton" type="Button" parent="Panel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -228.0
+offset_top = -172.0
+offset_right = 228.0
+offset_bottom = -84.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Back"
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="pressed" from="Panel/BackButton" to="." method="_on_back_button_pressed"]

@@ -1,11 +1,11 @@
 extends Control
-class_name ScoreGUI
+class_name HighScoreGUI
 
 
 # ----------------- DECLARE VARIABLES -----------------
 
 
-@onready var current_score_counter: Label = $ScoreCounter
+@onready var high_score_counter: Label = $ScoreCounter
 
 
 # ----------------- RUN CODE -----------------
@@ -20,12 +20,13 @@ func _ready() -> void:
 
 
 func _initialize_signals() -> void:
-	ScoresManager.current_score_changed.connect(set_current_score)
+	ScoresManager.high_score_changed.connect(set_high_score)
 
 
 func _initialize() -> void:
-	set_current_score(0)
+	set_high_score(ScoresManager.high_score)
 
 
-func set_current_score(value: int) -> void:
-	self.current_score_counter.text = str(value)
+func set_high_score(value: int) -> void:
+	self.high_score_counter.text = str(value)
+

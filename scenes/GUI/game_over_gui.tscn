@@ -1,15 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://mqll244bgqkv"]
 
-[ext_resource type="Script" path="res://game_over_gui.gd" id="1_48uqd"]
+[ext_resource type="Theme" uid="uid://bdanof2i81six" path="res://resources/theme_main.tres" id="1_1x78g"]
+[ext_resource type="Script" path="res://scenes/GUI/game_over_gui.gd" id="1_khfyk"]
 [ext_resource type="PackedScene" uid="uid://ep83olflceuk" path="res://play_again_button.tscn" id="2_n0krh"]
 [ext_resource type="PackedScene" uid="uid://b8oc51q6nuc30" path="res://quit_game_button.tscn" id="3_le1ui"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rdggc"]
-bg_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 64
-corner_radius_top_right = 64
-corner_radius_bottom_right = 64
-corner_radius_bottom_left = 64
 
 [node name="GameOverGUI" type="Control"]
 layout_mode = 3
@@ -18,7 +12,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_48uqd")
+theme = ExtResource("1_1x78g")
+script = ExtResource("1_khfyk")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
@@ -33,7 +28,6 @@ offset_right = 433.0
 offset_bottom = 483.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_rdggc")
 
 [node name="ScoreText" type="Label" parent="Panel"]
 layout_mode = 1

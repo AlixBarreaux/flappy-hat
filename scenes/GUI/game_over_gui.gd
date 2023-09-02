@@ -5,8 +5,6 @@ class_name GameOverGUI
 # ----------------- DECLARE VARIABLES -----------------
 
 
-@export var scores_manager: ScoresManager
-
 @onready var score_count_label: Label = $Panel/ScoreCount
 @onready var high_score_count_label: Label = $Panel/HighScoreCount
 
@@ -22,8 +20,8 @@ func _ready() -> void:
 
 
 func on_game_over() -> void:
-	self.set_current_score(scores_manager.current_score)
-	self.set_high_score(scores_manager.high_score)
+	self.set_current_score(ScoresManager.current_score)
+	self.set_high_score(ScoresManager.high_score)
 	self.show()
 
 

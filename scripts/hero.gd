@@ -7,7 +7,6 @@ class_name Hero
 
 @export var gravity: float = 250.0
 @export var jump_force: float = 3300.0
-#var rotation_speed:  = 2
 
 @export var max_gravity: float = 600.0
 @export var max_jump_force = 3300.0
@@ -30,8 +29,6 @@ func _initialize_signals() -> void:
 
 func _physics_process(delta: float) -> void:
 	self.velocity.y += gravity
-#
-#	fall_speed += FALL_FORCE
 	
 	self.velocity.y = min(self.velocity.y, max_gravity)
 	
@@ -39,8 +36,8 @@ func _physics_process(delta: float) -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventMouse:
-		self.jump()
+#	if event is InputEventMouse:
+#		self.jump()
 	
 	if Input.is_action_just_pressed("jump"):
 		self.jump()
