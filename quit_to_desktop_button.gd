@@ -5,6 +5,8 @@ class_name QuitToDesktopButton
 # ----------------- DECLARE VARIABLES -----------------
 
 
+@export var scene_to_load: PackedScene
+
 
 # ----------------- RUN CODE -----------------
 

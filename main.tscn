@@ -1,16 +1,16 @@
 [gd_scene load_steps=13 format=3 uid="uid://djg32er3gm4ot"]
 
-[ext_resource type="Texture2D" uid="uid://1pwh40vf6kp8" path="res://assets/sprites/middleground_desert.png" id="1_22ksx"]
-[ext_resource type="Texture2D" uid="uid://cgbu5muk28jsb" path="res://assets/sprites/desert_foreground.png" id="2_uhksl"]
-[ext_resource type="Script" path="res://scripts/moving_objects.gd" id="3_r72v1"]
-[ext_resource type="Script" path="res://scripts/arena_boundaries.gd" id="4_ah6g0"]
-[ext_resource type="PackedScene" uid="uid://cvfus84lv04ta" path="res://scenes/hero.tscn" id="4_dv7uu"]
-[ext_resource type="PackedScene" uid="uid://c6wtl074b6vv" path="res://scenes/obstacle.tscn" id="5_5y2s5"]
-[ext_resource type="PackedScene" uid="uid://b26afmw8l0jat" path="res://scenes/kill_zone.tscn" id="5_fwvt5"]
-[ext_resource type="Script" path="res://scripts/obstacles.gd" id="6_bhj6l"]
-[ext_resource type="PackedScene" uid="uid://b1sye4sdv81p1" path="res://scenes/GUI/score_gui.tscn" id="8_kg6j2"]
-[ext_resource type="PackedScene" uid="uid://mqll244bgqkv" path="res://scenes/GUI/game_over_gui.tscn" id="10_55lyn"]
-[ext_resource type="PackedScene" uid="uid://cpgwq645feqk5" path="res://scenes/pause_menu_2.tscn" id="11_c3vrf"]
+[ext_resource type="Texture2D" uid="uid://1pwh40vf6kp8" path="res://assets/sprites/middleground_desert.png" id="1_nt0og"]
+[ext_resource type="Texture2D" uid="uid://cgbu5muk28jsb" path="res://assets/sprites/desert_foreground.png" id="2_uhc10"]
+[ext_resource type="Script" path="res://scripts/moving_objects.gd" id="3_52ybr"]
+[ext_resource type="Script" path="res://scripts/arena_boundaries.gd" id="4_iski7"]
+[ext_resource type="PackedScene" uid="uid://b26afmw8l0jat" path="res://scenes/kill_zone.tscn" id="5_8f4db"]
+[ext_resource type="PackedScene" uid="uid://cvfus84lv04ta" path="res://scenes/hero.tscn" id="6_skgbd"]
+[ext_resource type="Script" path="res://scripts/obstacles.gd" id="7_081nh"]
+[ext_resource type="PackedScene" uid="uid://c6wtl074b6vv" path="res://scenes/obstacle.tscn" id="8_goyqa"]
+[ext_resource type="PackedScene" uid="uid://b1sye4sdv81p1" path="res://scenes/GUI/score_gui.tscn" id="9_evw0b"]
+[ext_resource type="PackedScene" uid="uid://mqll244bgqkv" path="res://scenes/GUI/game_over_gui.tscn" id="10_5f54q"]
+[ext_resource type="PackedScene" uid="uid://cpgwq645feqk5" path="res://scenes/pause_menu.tscn" id="11_pl0p4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vquv8"]
 size = Vector2(1920, 134)
@@ -39,7 +39,7 @@ motion_mirroring = Vector2(1920, 0)
 
 [node name="Sprite2D2" type="Sprite2D" parent="World/ParallaxBackground/ParallaxLayer"]
 position = Vector2(960, 835)
-texture = ExtResource("1_22ksx")
+texture = ExtResource("1_nt0og")
 
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="World/ParallaxBackground"]
 motion_scale = Vector2(0.6, 0.6)
@@ -47,10 +47,10 @@ motion_mirroring = Vector2(1920, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="World/ParallaxBackground/ParallaxLayer2"]
 position = Vector2(960, 841)
-texture = ExtResource("2_uhksl")
+texture = ExtResource("2_uhc10")
 
 [node name="MovingObjects" type="Node2D" parent="World"]
-script = ExtResource("3_r72v1")
+script = ExtResource("3_52ybr")
 scroll_speed = 800.0
 
 [node name="Camera2D" type="Camera2D" parent="World/MovingObjects"]
@@ -58,9 +58,9 @@ position = Vector2(960, 540)
 
 [node name="ArenaBoundaries" type="StaticBody2D" parent="World/MovingObjects/Camera2D"]
 position = Vector2(-960, -540)
-script = ExtResource("4_ah6g0")
+script = ExtResource("4_iski7")
 
-[node name="KillZone" parent="World/MovingObjects/Camera2D/ArenaBoundaries" instance=ExtResource("5_fwvt5")]
+[node name="KillZone" parent="World/MovingObjects/Camera2D/ArenaBoundaries" instance=ExtResource("5_8f4db")]
 
 [node name="BoundaryTop" type="CollisionShape2D" parent="World/MovingObjects/Camera2D/ArenaBoundaries/KillZone"]
 position = Vector2(960, -210)
@@ -70,24 +70,24 @@ shape = SubResource("RectangleShape2D_vquv8")
 position = Vector2(960, 1367)
 shape = SubResource("RectangleShape2D_vquv8")
 
-[node name="Hero" parent="World/MovingObjects/Camera2D" instance=ExtResource("4_dv7uu")]
+[node name="Hero" parent="World/MovingObjects/Camera2D" instance=ExtResource("6_skgbd")]
 position = Vector2(-455, 0)
 
 [node name="Obstacles" type="Node2D" parent="World" node_paths=PackedStringArray("camera", "boundary_bottom_collision_shape")]
-script = ExtResource("6_bhj6l")
+script = ExtResource("7_081nh")
 camera = NodePath("../MovingObjects/Camera2D")
 boundary_bottom_collision_shape = NodePath("../MovingObjects/Camera2D/ArenaBoundaries/KillZone/BoundaryBottom")
 
-[node name="Obstacle" parent="World/Obstacles" instance=ExtResource("5_5y2s5")]
+[node name="Obstacle" parent="World/Obstacles" instance=ExtResource("8_goyqa")]
 position = Vector2(2148, 540)
 
-[node name="Obstacle2" parent="World/Obstacles" instance=ExtResource("5_5y2s5")]
+[node name="Obstacle2" parent="World/Obstacles" instance=ExtResource("8_goyqa")]
 position = Vector2(2703, 540)
 
-[node name="Obstacle3" parent="World/Obstacles" instance=ExtResource("5_5y2s5")]
+[node name="Obstacle3" parent="World/Obstacles" instance=ExtResource("8_goyqa")]
 position = Vector2(3258, 540)
 
-[node name="Obstacle4" parent="World/Obstacles" instance=ExtResource("5_5y2s5")]
+[node name="Obstacle4" parent="World/Obstacles" instance=ExtResource("8_goyqa")]
 position = Vector2(3813, 540)
 
 [node name="BoundaryPoints" type="Node2D" parent="World"]
@@ -103,11 +103,11 @@ position = Vector2(1920, 540)
 
 [node name="GUI" type="CanvasLayer" parent="."]
 
-[node name="ScoreGUI" parent="GUI" instance=ExtResource("8_kg6j2")]
+[node name="ScoreGUI" parent="GUI" instance=ExtResource("9_evw0b")]
 
-[node name="GameOverGUI" parent="GUI" instance=ExtResource("10_55lyn")]
+[node name="GameOverGUI" parent="GUI" instance=ExtResource("10_5f54q")]
 visible = false
 
-[node name="PauseMenu" parent="GUI" instance=ExtResource("11_c3vrf")]
+[node name="PauseMenu" parent="GUI" instance=ExtResource("11_pl0p4")]
 
 [node name="HighScoreBeatenSound" type="AudioStreamPlayer" parent="."]
