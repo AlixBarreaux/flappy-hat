@@ -11,6 +11,10 @@ var high_score: int = 0
 
 signal current_score_changed(new_score: int)
 signal high_score_changed(new_high_score: int)
+signal high_score_beaten
+
+
+var was_high_score_beaten: bool = false
 
 
 # ----------------- RUN CODE -----------------
@@ -25,15 +29,24 @@ func _ready() -> void:
 
 
 func on_game_restarted() -> void:
-	self.current_score = 0
+	self.set_current_score(0)
+	was_high_score_beaten = false
 
 
 func on_obstacle_zone_passed() -> void:
-	current_score += 1
+	self.current_score += 1
 	self.emit_signal("current_score_changed", current_score)
 	
 	if self.current_score > self.high_score:
 		self.set_high_score(self.current_score)
+		
+		if not was_high_score_beaten:
+			self.high_score_beaten.emit()
+		was_high_score_beaten = true
+
+
+func set_current_score(value: int) -> void:
+	self.current_score = value
 
 
 func set_high_score(value: int) -> void:
@@ -64,5 +77,6 @@ func on_game_over() -> void:
 
 
 func _initialize_signals() -> void:
-	Events.obstacle_zone_passed.connect(on_obstacle_zone_passed)
-	Events.game_over.connect(on_game_over)
+	Events.obstacle_zone_passed.connect(self.on_obstacle_zone_passed)
+	Events.game_over.connect(self.on_game_over)
+	Events.game_restarted.connect(self.on_game_restarted)

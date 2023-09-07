@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://mqll244bgqkv"]
+[gd_scene load_steps=6 format=3 uid="uid://mqll244bgqkv"]
 
 [ext_resource type="Theme" uid="uid://bdanof2i81six" path="res://resources/theme_main.tres" id="1_1x78g"]
 [ext_resource type="Script" path="res://scenes/GUI/game_over_gui.gd" id="1_khfyk"]
 [ext_resource type="PackedScene" uid="uid://ep83olflceuk" path="res://play_again_button.tscn" id="2_n0krh"]
 [ext_resource type="PackedScene" uid="uid://b8oc51q6nuc30" path="res://quit_game_button.tscn" id="3_le1ui"]
+[ext_resource type="PackedScene" uid="uid://bhc0eu58em6ts" path="res://scenes/GUI/main_menu.tscn" id="5_1rdfu"]
 
 [node name="GameOverGUI" type="Control"]
 layout_mode = 3
@@ -106,6 +107,7 @@ focus_neighbor_right = NodePath("")
 focus_neighbor_bottom = NodePath("")
 focus_next = NodePath("")
 focus_previous = NodePath("")
+scene_to_load = ExtResource("5_1rdfu")
 
 [node name="GameOverText" type="Label" parent="."]
 layout_mode = 1

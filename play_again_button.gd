@@ -14,4 +14,4 @@ class_name PlayAgainButton
 
 
 func _on_pressed() -> void:
-	pass # Replace with function body.
+	Events.game_restarted.emit()

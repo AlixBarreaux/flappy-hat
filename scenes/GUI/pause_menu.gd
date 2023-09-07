@@ -24,12 +24,25 @@ func _unhandled_key_input(event: InputEvent) -> void:
 # ----------------- DECLARE FUNCTIONS -----------------
 
 
+func set_enabled(value: bool) -> void:
+	if value:
+		self.show()
+		self.set_process_unhandled_key_input(true)
+	else:
+		self.hide()
+		self.set_process_unhandled_key_input(false)
+
 func on_game_over() -> void:
-	self.hide()
+	self.set_enabled(false)
+
+
+func on_game_restarted() -> void:
+	self.set_enabled(true)
 
 
 func _initialize_signals() -> void:
-	Events.game_over.connect(on_game_over)
+	Events.game_over.connect(self.on_game_over)
+	Events.game_restarted.connect(self.on_game_restarted)
 
 
 func set_paused(value: bool) -> void:

@@ -18,3 +18,5 @@ class_name QuitGameButton
 func _on_pressed() -> void:
 	get_tree().paused = false
 	get_tree().change_scene_to_packed(self.scene_to_load)
+	
+	ScoresManager.set_current_score(0)

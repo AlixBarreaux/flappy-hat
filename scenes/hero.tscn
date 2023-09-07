@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/hero.gd" id="1_y5vbu"]
 [ext_resource type="Texture2D" uid="uid://cv5tvsbcg4ukj" path="res://assets/sprites/cow_boy_hat.png" id="2_co6y6"]
 [ext_resource type="AudioStream" uid="uid://cuh7yk33kn3x5" path="res://assets/audio/sound-effects/flap.wav" id="4_4u4qc"]
-[ext_resource type="AudioStream" uid="uid://cwlafa3pa00rh" path="res://assets/audio/sound-effects/player_death_2.wav" id="4_c57bg"]
+[ext_resource type="AudioStream" uid="uid://cwlafa3pa00rh" path="res://assets/audio/sound-effects/player_death.wav" id="4_sp7mv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2glrc"]
 size = Vector2(130, 44)
@@ -38,4 +38,4 @@ stream = ExtResource("4_4u4qc")
 bus = &"Sound Effects"
 
 [node name="DeathSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_c57bg")
+stream = ExtResource("4_sp7mv")

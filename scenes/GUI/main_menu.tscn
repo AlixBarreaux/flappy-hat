@@ -1,10 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://bhc0eu58em6ts"]
+[gd_scene load_steps=9 format=3 uid="uid://bhc0eu58em6ts"]
 
 [ext_resource type="Script" path="res://scenes/GUI/main_menu.gd" id="1_g3rcc"]
 [ext_resource type="Theme" uid="uid://bdanof2i81six" path="res://resources/theme_main.tres" id="1_lio6t"]
 [ext_resource type="AudioStream" uid="uid://dbrp3ppkhitjm" path="res://assets/audio/music/pray_and_hope_no_copyright_slow_bluegrass_royalty_free_country_folk_music.ogg" id="3_e7usl"]
 [ext_resource type="Script" path="res://scripts/gui/game_title_label.gd" id="3_ge6lo"]
-[ext_resource type="PackedScene" uid="uid://djg32er3gm4ot" path="res://main.tscn" id="3_n3kwp"]
 [ext_resource type="PackedScene" uid="uid://cw3u5xobyu3h2" path="res://quit_to_desktop_button.tscn" id="4_w704j"]
 [ext_resource type="PackedScene" uid="uid://ckgq3ken1wg1d" path="res://scenes/GUI/high_score_gui.tscn" id="6_skcw4"]
 [ext_resource type="PackedScene" uid="uid://8loeelhf8y7q" path="res://scenes/GUI/credits_menu.tscn" id="7_4jr1k"]
@@ -19,7 +18,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_lio6t")
 script = ExtResource("1_g3rcc")
-scene_to_load = ExtResource("3_n3kwp")
+scene_to_load_path = "res://main.tscn"
 initial_element_to_focus = NodePath("Panel/Buttons/PlayButton")
 credits_menu = NodePath("Panel/CreditsMenu")
 

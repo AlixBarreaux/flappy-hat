@@ -1,5 +1,6 @@
-[gd_scene load_steps=13 format=3 uid="uid://djg32er3gm4ot"]
+[gd_scene load_steps=16 format=3 uid="uid://djg32er3gm4ot"]
 
+[ext_resource type="Script" path="res://main.gd" id="1_0pd24"]
 [ext_resource type="Texture2D" uid="uid://1pwh40vf6kp8" path="res://assets/sprites/middleground_desert.png" id="1_nt0og"]
 [ext_resource type="Texture2D" uid="uid://cgbu5muk28jsb" path="res://assets/sprites/desert_foreground.png" id="2_uhc10"]
 [ext_resource type="Script" path="res://scripts/moving_objects.gd" id="3_52ybr"]
@@ -11,11 +12,14 @@
 [ext_resource type="PackedScene" uid="uid://b1sye4sdv81p1" path="res://scenes/GUI/score_gui.tscn" id="9_evw0b"]
 [ext_resource type="PackedScene" uid="uid://mqll244bgqkv" path="res://scenes/GUI/game_over_gui.tscn" id="10_5f54q"]
 [ext_resource type="PackedScene" uid="uid://cpgwq645feqk5" path="res://scenes/pause_menu.tscn" id="11_pl0p4"]
+[ext_resource type="Script" path="res://high_score_beaten_sound.gd" id="13_8fyxb"]
+[ext_resource type="AudioStream" uid="uid://4aeda3u3j42" path="res://assets/audio/sound-effects/yeehaw.wav" id="13_27bqx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vquv8"]
 size = Vector2(1920, 134)
 
 [node name="Main" type="Node"]
+script = ExtResource("1_0pd24")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -2
@@ -111,3 +115,5 @@ visible = false
 [node name="PauseMenu" parent="GUI" instance=ExtResource("11_pl0p4")]
 
 [node name="HighScoreBeatenSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_27bqx")
+script = ExtResource("13_8fyxb")

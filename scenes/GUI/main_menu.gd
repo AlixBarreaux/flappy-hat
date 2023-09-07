@@ -5,7 +5,7 @@ class_name MainMenu
 # ----------------- DECLARE VARIABLES -----------------
 
 
-@export var scene_to_load: PackedScene
+@export var scene_to_load_path: String
 @export var initial_element_to_focus: Button
 
 @export var credits_menu: CreditsMenu
@@ -22,7 +22,7 @@ func _ready() -> void:
 
 
 func _on_play_button_pressed() -> void:
-	get_tree().change_scene_to_packed(scene_to_load)
+	get_tree().change_scene_to_file(self.scene_to_load_path)
 
 
 func _on_credits_button_pressed() -> void:

@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://cpgwq645feqk5"]
+[gd_scene load_steps=7 format=3 uid="uid://cpgwq645feqk5"]
 
 [ext_resource type="PackedScene" uid="uid://weeybc4svd5r" path="res://resume_button.tscn" id="1_e8te4"]
 [ext_resource type="Script" path="res://scenes/GUI/pause_menu.gd" id="1_iblhy"]
 [ext_resource type="Theme" uid="uid://bdanof2i81six" path="res://resources/theme_main.tres" id="1_u5x2h"]
 [ext_resource type="PackedScene" uid="uid://b8oc51q6nuc30" path="res://quit_game_button.tscn" id="2_wsf4n"]
+[ext_resource type="PackedScene" uid="uid://bhc0eu58em6ts" path="res://scenes/GUI/main_menu.tscn" id="5_yiokt"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q72ky"]
 bg_color = Color(1, 1, 1, 1)
@@ -61,6 +62,7 @@ focus_previous = NodePath("")
 
 [node name="QuitGameButton" parent="Panel/HBoxContainer" instance=ExtResource("2_wsf4n")]
 layout_mode = 2
+scene_to_load = ExtResource("5_yiokt")
 
 [node name="Label" type="Label" parent="Panel"]
 layout_mode = 1
