@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://djg32er3gm4ot"]
+[gd_scene load_steps=20 format=3 uid="uid://djg32er3gm4ot"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_0pd24"]
 [ext_resource type="Texture2D" uid="uid://1pwh40vf6kp8" path="res://assets/sprites/middleground_desert.png" id="1_nt0og"]
@@ -14,9 +14,46 @@
 [ext_resource type="PackedScene" uid="uid://cpgwq645feqk5" path="res://scenes/pause_menu.tscn" id="11_pl0p4"]
 [ext_resource type="Script" path="res://high_score_beaten_sound.gd" id="13_8fyxb"]
 [ext_resource type="AudioStream" uid="uid://4aeda3u3j42" path="res://assets/audio/sound-effects/yeehaw.wav" id="13_27bqx"]
+[ext_resource type="AudioStream" uid="uid://dmlubmi2kge3b" path="res://assets/audio/music/blue_gras_in_hillbilly_country_-_no_copyright_music.ogg" id="13_g4f06"]
+[ext_resource type="Script" path="res://music.gd" id="14_5443r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vquv8"]
 size = Vector2(1920, 134)
+
+[sub_resource type="Animation" id="Animation_6l5wp"]
+resource_name = "fade_out"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -80.0]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"stop"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ieb14"]
+_data = {
+"fade_out": SubResource("Animation_6l5wp")
+}
 
 [node name="Main" type="Node"]
 script = ExtResource("1_0pd24")
@@ -113,6 +150,17 @@ position = Vector2(1920, 540)
 visible = false
 
 [node name="PauseMenu" parent="GUI" instance=ExtResource("11_pl0p4")]
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_g4f06")
+autoplay = true
+bus = &"Music"
+script = ExtResource("14_5443r")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Music"]
+libraries = {
+"": SubResource("AnimationLibrary_ieb14")
+}
 
 [node name="HighScoreBeatenSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("13_27bqx")

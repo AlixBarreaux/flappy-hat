@@ -54,17 +54,71 @@ alignment = 1
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+focus_neighbor_left = NodePath("../../BackButton")
+focus_neighbor_top = NodePath("../../BackButton")
+focus_neighbor_right = NodePath("../FunnyCartoonLink")
+focus_neighbor_bottom = NodePath("../FunnyCartoonLink")
+focus_next = NodePath("../FunnyCartoonLink")
+focus_previous = NodePath("../../BackButton")
 focus_mode = 2
 text = "Beeper Font"
 uri = "https://www.fontspace.com/beeper-font-f7374"
 
-[node name="FunnyCartoonSound" type="LinkButton" parent="Panel/VBoxContainer"]
+[node name="FunnyCartoonLink" type="LinkButton" parent="Panel/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+focus_neighbor_left = NodePath("../BeeperFontLink")
+focus_neighbor_top = NodePath("../BeeperFontLink")
+focus_neighbor_right = NodePath("../EightBitCoinLink")
+focus_neighbor_bottom = NodePath("../EightBitCoinLink")
+focus_next = NodePath("../EightBitCoinLink")
+focus_previous = NodePath("../BeeperFontLink")
 focus_mode = 2
-text = "Funny Cartoon Sound Effects | No Copyright"
+text = "Funny Cartoon Sound Effects"
 uri = "https://youtube.com/watch?v=VmgKryu4__k"
+
+[node name="EightBitCoinLink" type="LinkButton" parent="Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_neighbor_left = NodePath("../FunnyCartoonLink")
+focus_neighbor_top = NodePath("../FunnyCartoonLink")
+focus_neighbor_right = NodePath("../BlueGrassLink")
+focus_neighbor_bottom = NodePath("../BlueGrassLink")
+focus_next = NodePath("../BlueGrassLink")
+focus_previous = NodePath("../FunnyCartoonLink")
+focus_mode = 2
+text = "8-Bit Coin Sound Effect"
+uri = "https://youtube.com/watch?v=5v20ztxGvQ0"
+
+[node name="BlueGrassLink" type="LinkButton" parent="Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_neighbor_left = NodePath("../EightBitCoinLink")
+focus_neighbor_top = NodePath("../EightBitCoinLink")
+focus_neighbor_right = NodePath("../PrayAndHopeLink")
+focus_neighbor_bottom = NodePath("../PrayAndHopeLink")
+focus_next = NodePath("../PrayAndHopeLink")
+focus_previous = NodePath("../EightBitCoinLink")
+focus_mode = 2
+text = "Blue Gras In Hillbilly Country"
+uri = "https://youtube.com/watch?v=EIzfOQTRxc0"
+
+[node name="PrayAndHopeLink" type="LinkButton" parent="Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_neighbor_left = NodePath("../BlueGrassLink")
+focus_neighbor_top = NodePath("../BlueGrassLink")
+focus_neighbor_right = NodePath("../../BackButton")
+focus_neighbor_bottom = NodePath("../../BackButton")
+focus_next = NodePath("../../BackButton")
+focus_previous = NodePath("../BlueGrassLink")
+focus_mode = 2
+text = "Pray & Hope no copyright slow bluegrass"
+uri = "https://youtube.com/watch?v=LtKKO0LEweU"
 
 [node name="BackButton" type="Button" parent="Panel"]
 layout_mode = 1
@@ -79,6 +133,12 @@ offset_right = 228.0
 offset_bottom = -84.0
 grow_horizontal = 2
 grow_vertical = 0
+focus_neighbor_left = NodePath("../VBoxContainer/PrayAndHopeLink")
+focus_neighbor_top = NodePath("../VBoxContainer/PrayAndHopeLink")
+focus_neighbor_right = NodePath("../VBoxContainer/BeeperFontLink")
+focus_neighbor_bottom = NodePath("../VBoxContainer/BeeperFontLink")
+focus_next = NodePath("../VBoxContainer/BeeperFontLink")
+focus_previous = NodePath("../VBoxContainer/PrayAndHopeLink")
 text = "Back"
 
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
