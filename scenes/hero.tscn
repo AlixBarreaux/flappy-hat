@@ -39,3 +39,4 @@ bus = &"Sound Effects"
 
 [node name="DeathSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_sp7mv")
+bus = &"Sound Effects"

@@ -111,6 +111,7 @@ text = "Quit To Desktop"
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Panel"]
 stream = ExtResource("3_e7usl")
 autoplay = true
+bus = &"Music"
 
 [node name="HighScoreTextLabel" type="Label" parent="Panel"]
 layout_mode = 2

@@ -116,4 +116,5 @@ visible = false
 
 [node name="HighScoreBeatenSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("13_27bqx")
+bus = &"Sound Effects"
 script = ExtResource("13_8fyxb")
