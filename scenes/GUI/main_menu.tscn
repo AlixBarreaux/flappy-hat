@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bhc0eu58em6ts"]
+[gd_scene load_steps=15 format=3 uid="uid://bhc0eu58em6ts"]
 
 [ext_resource type="Script" path="res://scenes/GUI/main_menu.gd" id="1_g3rcc"]
 [ext_resource type="Theme" uid="uid://bdanof2i81six" path="res://resources/theme_main.tres" id="1_lio6t"]
@@ -6,13 +6,51 @@
 [ext_resource type="AudioStream" uid="uid://dbrp3ppkhitjm" path="res://assets/audio/music/pray_and_hope_no_copyright_slow_bluegrass_royalty_free_country_folk_music.ogg" id="3_e7usl"]
 [ext_resource type="Script" path="res://scripts/gui/game_title_label.gd" id="3_ge6lo"]
 [ext_resource type="Texture2D" uid="uid://cgbu5muk28jsb" path="res://assets/sprites/desert_foreground.png" id="4_754mg"]
-[ext_resource type="PackedScene" uid="uid://cw3u5xobyu3h2" path="res://quit_to_desktop_button.tscn" id="4_w704j"]
+[ext_resource type="PackedScene" uid="uid://cw3u5xobyu3h2" path="res://scenes/quit_to_desktop_button.tscn" id="4_w704j"]
 [ext_resource type="PackedScene" uid="uid://ckgq3ken1wg1d" path="res://scenes/GUI/high_score_gui.tscn" id="6_skcw4"]
 [ext_resource type="PackedScene" uid="uid://8loeelhf8y7q" path="res://scenes/GUI/credits_menu.tscn" id="7_4jr1k"]
 [ext_resource type="Texture2D" uid="uid://cv5tvsbcg4ukj" path="res://assets/sprites/cow_boy_hat.png" id="8_mh0dl"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1jthr"]
 bg_color = Color(0.0588235, 0.0588235, 0.0588235, 0.937255)
+
+[sub_resource type="Animation" id="Animation_wy1wy"]
+resource_name = "idle"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HatTexture:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.174533, 0.0, -0.174533]
+}
+
+[sub_resource type="Animation" id="Animation_a43xr"]
+resource_name = "RESET"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HatTexture:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_iteh0"]
+_data = {
+"RESET": SubResource("Animation_a43xr"),
+"idle": SubResource("Animation_wy1wy")
+}
 
 [node name="MainMenu" type="Control" node_paths=PackedStringArray("initial_element_to_focus", "credits_menu")]
 layout_mode = 3
@@ -52,7 +90,7 @@ theme_override_font_sizes/font_size = 150
 text = "Game Title"
 script = ExtResource("3_ge6lo")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="HatTexture" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -62,6 +100,7 @@ offset_top = 24.0
 offset_right = 70.0
 offset_bottom = 96.0
 grow_horizontal = 2
+pivot_offset = Vector2(70, 36)
 texture = ExtResource("8_mh0dl")
 
 [node name="Buttons" type="VBoxContainer" parent="."]
@@ -142,6 +181,24 @@ offset_top = 860.0
 [node name="CreditsMenu" parent="." instance=ExtResource("7_4jr1k")]
 visible = false
 layout_mode = 1
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -2
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.972549, 1, 0.760784, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "idle"
+libraries = {
+"": SubResource("AnimationLibrary_iteh0")
+}
 
 [connection signal="pressed" from="Buttons/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="Buttons/CreditsButton" to="." method="_on_credits_button_pressed"]

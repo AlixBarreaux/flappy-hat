@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://c6wtl074b6vv" path="res://scenes/obstacle.tscn" id="8_goyqa"]
 [ext_resource type="PackedScene" uid="uid://b1sye4sdv81p1" path="res://scenes/GUI/score_gui.tscn" id="9_evw0b"]
 [ext_resource type="PackedScene" uid="uid://mqll244bgqkv" path="res://scenes/GUI/game_over_gui.tscn" id="10_5f54q"]
-[ext_resource type="PackedScene" uid="uid://cpgwq645feqk5" path="res://scenes/pause_menu.tscn" id="11_pl0p4"]
+[ext_resource type="PackedScene" uid="uid://cpgwq645feqk5" path="res://scenes/GUI/pause_menu.tscn" id="11_pl0p4"]
 [ext_resource type="Script" path="res://high_score_beaten_sound.gd" id="13_8fyxb"]
 [ext_resource type="AudioStream" uid="uid://4aeda3u3j42" path="res://assets/audio/sound-effects/yeehaw.wav" id="13_27bqx"]
 [ext_resource type="AudioStream" uid="uid://dmlubmi2kge3b" path="res://assets/audio/music/blue_gras_in_hillbilly_country_-_no_copyright_music.ogg" id="13_g4f06"]

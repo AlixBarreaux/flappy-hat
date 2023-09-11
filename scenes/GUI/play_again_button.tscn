@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://ep83olflceuk"]
 
-[ext_resource type="Texture2D" uid="uid://dgolg8xmtd1lo" path="res://assets/sprites/resume.png" id="1_2swk6"]
+[ext_resource type="Texture2D" uid="uid://bhrlybif8tr28" path="res://assets/sprites/play_again.png" id="1_fq5s4"]
 [ext_resource type="Script" path="res://play_again_button.gd" id="2_a3a60"]
 
 [node name="PlayAgainButton" type="TextureButton"]
@@ -11,5 +11,5 @@ focus_neighbor_right = NodePath("../QuitGameButton")
 focus_neighbor_bottom = NodePath("../QuitGameButton")
 focus_next = NodePath("../QuitGameButton")
 focus_previous = NodePath("../QuitGameButton")
-texture_normal = ExtResource("1_2swk6")
+texture_normal = ExtResource("1_fq5s4")
 script = ExtResource("2_a3a60")
