@@ -13,6 +13,9 @@ config_version=5
 config/name="Flappy Hat"
 run/main_scene="res://scenes/GUI/main_menu.tscn"
 config/features=PackedStringArray("4.1", "Mobile")
+config/icon="res://miscellaneous/game_icon_512.png"
+config/macos_native_icon="res://miscellaneous/game_icon_512.icns"
+config/windows_native_icon="res://miscellaneous/game_icon_256.ico"
 
 [audio]
 
