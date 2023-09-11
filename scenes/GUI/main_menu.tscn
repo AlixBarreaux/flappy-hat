@@ -6,13 +6,28 @@
 [ext_resource type="AudioStream" uid="uid://dbrp3ppkhitjm" path="res://assets/audio/music/pray_and_hope_no_copyright_slow_bluegrass_royalty_free_country_folk_music.ogg" id="3_e7usl"]
 [ext_resource type="Script" path="res://scripts/gui/game_title_label.gd" id="3_ge6lo"]
 [ext_resource type="Texture2D" uid="uid://cgbu5muk28jsb" path="res://assets/sprites/desert_foreground.png" id="4_754mg"]
-[ext_resource type="PackedScene" uid="uid://cw3u5xobyu3h2" path="res://scenes/quit_to_desktop_button.tscn" id="4_w704j"]
+[ext_resource type="PackedScene" uid="uid://cw3u5xobyu3h2" path="res://scenes/GUI/quit_to_desktop_button.tscn" id="4_w704j"]
 [ext_resource type="PackedScene" uid="uid://ckgq3ken1wg1d" path="res://scenes/GUI/high_score_gui.tscn" id="6_skcw4"]
 [ext_resource type="PackedScene" uid="uid://8loeelhf8y7q" path="res://scenes/GUI/credits_menu.tscn" id="7_4jr1k"]
 [ext_resource type="Texture2D" uid="uid://cv5tvsbcg4ukj" path="res://assets/sprites/cow_boy_hat.png" id="8_mh0dl"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1jthr"]
 bg_color = Color(0.0588235, 0.0588235, 0.0588235, 0.937255)
+
+[sub_resource type="Animation" id="Animation_a43xr"]
+resource_name = "RESET"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HatTexture:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
 [sub_resource type="Animation" id="Animation_wy1wy"]
 resource_name = "idle"
@@ -29,21 +44,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [0.0, 0.174533, 0.0, -0.174533]
-}
-
-[sub_resource type="Animation" id="Animation_a43xr"]
-resource_name = "RESET"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("HatTexture:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_iteh0"]

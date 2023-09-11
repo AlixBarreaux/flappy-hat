@@ -49,12 +49,11 @@ func _physics_process(delta: float) -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("jump"):
-		print("Action JUMP SPACE BAR")
 		self.jump()
 	elif event is InputEventMouseButton:
 		if event.is_pressed():
 			self.jump()
-			print("Action JUMP MOUSE")
+
 
 # ----------------- DECLARE FUNCTIONS -----------------
 
@@ -74,7 +73,6 @@ func set_enabled(value: bool) -> void:
 func jump() -> void:
 	self.velocity.y -= min(jump_force, max_jump_force)
 	self.jump_sound.play()
-	print("JUMP")
 
 
 func die() -> void:
