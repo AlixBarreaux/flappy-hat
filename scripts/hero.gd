@@ -6,14 +6,15 @@ class_name Hero
 
 
 @export var gravity: float = 250.0
-@export var jump_force: float = 3300.0
+@export var jump_force: float = 21450 #// ~/6.5 without delta time
 
 @export var max_gravity: float = 600.0
-@export var max_jump_force = 3300.0
+@export var max_jump_force = 21450 #// ~/6.5 without delta time
 
 @onready var collision_shape_2d = $CollisionShape2D
 @onready var jump_sound: AudioStreamPlayer = $JumpSound
 @onready var death_sound: AudioStreamPlayer = $DeathSound
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 
 # ----------------- RUN CODE -----------------
@@ -21,10 +22,21 @@ class_name Hero
 
 func _ready() -> void:
 	self._initialize_signals()
+	self._initialize()
 
 
 func _initialize_signals() -> void:
-	Events.game_restarted.connect(resurrect)
+	Events.get_ready_gui_passed.connect(on_get_ready_gui_passed)
+
+
+func on_get_ready_gui_passed() -> void:
+	self.set_enabled(true)
+	# BUG: Jumping all the way to the top rather than just a normal jump
+#	self.jump()
+
+
+func _initialize() -> void:
+	self.set_enabled(false)
 
 
 func _physics_process(delta: float) -> void:
@@ -36,12 +48,11 @@ func _physics_process(delta: float) -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
-#	if event is InputEventMouse:
-#		self.jump()
-	
 	if Input.is_action_just_pressed("jump"):
 		self.jump()
-
+	elif event is InputEventMouseButton:
+		if event.is_pressed():
+			self.jump()
 
 # ----------------- DECLARE FUNCTIONS -----------------
 
@@ -49,21 +60,22 @@ func _unhandled_input(event: InputEvent) -> void:
 func set_enabled(value: bool) -> void:
 	if value:
 		self.collision_shape_2d.set_deferred("disabled", false)
+		self.set_process_unhandled_input(true)
+		self.set_physics_process(true)
+		
 	else:
 		self.collision_shape_2d.set_deferred("disabled", true)
+		self.set_process_unhandled_input(false)
+		self.set_physics_process(false)
 
 
 func jump() -> void:
+	print(3300.0 * 6.5)
 	self.velocity.y -= min(jump_force, max_jump_force)
 	self.jump_sound.play()
 
 
 func die() -> void:
-	self.set_process_unhandled_input(false)
-	set_enabled(false)
+	self.set_enabled(false)
+	self.animation_player.play("die")
 	self.death_sound.play()
-
-
-func resurrect() -> void:
-	set_enabled(true)
-	self.set_process_unhandled_input(true)

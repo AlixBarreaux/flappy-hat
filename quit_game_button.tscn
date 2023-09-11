@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://b8oc51q6nuc30"]
 
-[ext_resource type="Texture2D" uid="uid://dcfylkgsygv1o" path="res://quit_game.png" id="1_2f73u"]
+[ext_resource type="Texture2D" uid="uid://dcfylkgsygv1o" path="res://assets/sprites/quit_game.png" id="1_2f73u"]
 [ext_resource type="Script" path="res://quit_game_button.gd" id="2_2kue0"]
 
 [node name="QuitGameButton" type="TextureButton"]

@@ -11,5 +11,4 @@ class_name Obstacles
 
 # ----------------- RUN CODE -----------------
 
-
 # ----------------- DECLARE FUNCTIONS -----------------

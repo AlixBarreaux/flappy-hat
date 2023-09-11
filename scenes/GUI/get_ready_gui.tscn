@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3 uid="uid://daf1xbmqhi8or"]
+
+[ext_resource type="Theme" uid="uid://bdanof2i81six" path="res://resources/theme_main.tres" id="1_7bg56"]
+[ext_resource type="Script" path="res://get_ready_gui.gd" id="2_rxjhg"]
+
+[node name="GetReadyGUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_7bg56")
+script = ExtResource("2_rxjhg")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -143.0
+offset_bottom = 143.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.298039, 0.0784314, 0, 1)
+theme_override_constants/line_spacing = 50
+theme_override_font_sizes/font_size = 50
+text = "Tap / Click to flap!
+
+Use space bar / gamepad buttons to flap like a pro!"
+horizontal_alignment = 1
+vertical_alignment = 1

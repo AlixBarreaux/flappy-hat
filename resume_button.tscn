@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://weeybc4svd5r"]
 
-[ext_resource type="Texture2D" uid="uid://dgolg8xmtd1lo" path="res://resume.png" id="1_q5obi"]
+[ext_resource type="Texture2D" uid="uid://dgolg8xmtd1lo" path="res://assets/sprites/resume.png" id="1_q5obi"]
 [ext_resource type="Script" path="res://resume_button.gd" id="2_t42xy"]
 
 [node name="ResumeButton" type="TextureButton"]

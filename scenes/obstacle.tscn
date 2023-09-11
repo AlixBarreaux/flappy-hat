@@ -1,15 +1,76 @@
-[gd_scene load_steps=7 format=3 uid="uid://c6wtl074b6vv"]
+[gd_scene load_steps=10 format=3 uid="uid://c6wtl074b6vv"]
 
 [ext_resource type="Script" path="res://scripts/obstacle.gd" id="1_bb731"]
 [ext_resource type="PackedScene" uid="uid://b26afmw8l0jat" path="res://scenes/kill_zone.tscn" id="2_k3edo"]
 [ext_resource type="AudioStream" uid="uid://6wt63bwojmqv" path="res://assets/audio/sound-effects/obstacle_passed.wav" id="3_vokfb"]
-[ext_resource type="Texture2D" uid="uid://cdyrwl5ahgofu" path="res://obstacle.png" id="4_ffkyu"]
+[ext_resource type="Texture2D" uid="uid://cdyrwl5ahgofu" path="res://assets/sprites/obstacle.png" id="4_hwemh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_us7ik"]
 size = Vector2(100, 870)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vpwqo"]
 size = Vector2(100, 370)
+
+[sub_resource type="Animation" id="Animation_crp7b"]
+resource_name = "disappear"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2DTop:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -620), Vector2(0, -1240)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D2Bottom:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 620), Vector2(0, 1240)]
+}
+
+[sub_resource type="Animation" id="Animation_ec47l"]
+resource_name = "RESET"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2DTop:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -620)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D2Bottom:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 620)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_le2sd"]
+_data = {
+"RESET": SubResource("Animation_ec47l"),
+"disappear": SubResource("Animation_crp7b")
+}
 
 [node name="Obstacle" type="Node2D"]
 position = Vector2(0, 540)
@@ -40,13 +101,18 @@ stream = ExtResource("3_vokfb")
 shape = SubResource("RectangleShape2D_vpwqo")
 debug_color = Color(0, 0.921569, 0.34902, 0.419608)
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2DTop" type="Sprite2D" parent="."]
 position = Vector2(0, -620)
-texture = ExtResource("4_ffkyu")
+texture = ExtResource("4_hwemh")
 
-[node name="Sprite2D2" type="Sprite2D" parent="."]
+[node name="Sprite2D2Bottom" type="Sprite2D" parent="."]
 position = Vector2(0, 620)
-texture = ExtResource("4_ffkyu")
+texture = ExtResource("4_hwemh")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_le2sd")
+}
 
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
 [connection signal="body_exited" from="ObstaclePassedZone" to="." method="_on_obstacle_passed_zone_body_exited"]

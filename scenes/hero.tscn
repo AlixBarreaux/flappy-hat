@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cvfus84lv04ta"]
+[gd_scene load_steps=9 format=3 uid="uid://cvfus84lv04ta"]
 
 [ext_resource type="Script" path="res://scripts/hero.gd" id="1_y5vbu"]
 [ext_resource type="Texture2D" uid="uid://cv5tvsbcg4ukj" path="res://assets/sprites/cow_boy_hat.png" id="2_co6y6"]
@@ -8,11 +8,40 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2glrc"]
 size = Vector2(130, 44)
 
+[sub_resource type="Animation" id="Animation_rjc80"]
+resource_name = "RESET"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
 [sub_resource type="Animation" id="Animation_jw2gn"]
 resource_name = "die"
+length = 0.15
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0, 1)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1154t"]
 _data = {
+"RESET": SubResource("Animation_rjc80"),
 "die": SubResource("Animation_jw2gn")
 }
 
@@ -20,7 +49,6 @@ _data = {
 collision_mask = 6
 script = ExtResource("1_y5vbu")
 jump_force = 3000.0
-max_jump_force = 3000.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_2glrc")

@@ -17,21 +17,25 @@ class_name Obstacle
 
 
 @onready var audio_stream_player: AudioStreamPlayer = $ObstaclePassedZone/AudioStreamPlayer
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 
 # ----------------- RUN CODE -----------------
 
 
 func _ready() -> void:
-	self._initialize_asserts()
+	self._initialize_signals()
 
 
 # ----------------- DECLARE FUNCTIONS -----------------
 
 
-func _initialize_asserts() -> void:
-#	assert(self.get_parent() is Obstacles)
-	pass
+func _initialize_signals() -> void:
+	Events.game_over.connect(on_game_over)
+
+
+func on_game_over() -> void:
+	self.animation_player.play("disappear")
 
 
 func reset_to_new_random_position() -> void:

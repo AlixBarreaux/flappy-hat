@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://djg32er3gm4ot"]
+[gd_scene load_steps=21 format=3 uid="uid://djg32er3gm4ot"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_0pd24"]
 [ext_resource type="Texture2D" uid="uid://1pwh40vf6kp8" path="res://assets/sprites/middleground_desert.png" id="1_nt0og"]
@@ -15,6 +15,7 @@
 [ext_resource type="Script" path="res://high_score_beaten_sound.gd" id="13_8fyxb"]
 [ext_resource type="AudioStream" uid="uid://4aeda3u3j42" path="res://assets/audio/sound-effects/yeehaw.wav" id="13_27bqx"]
 [ext_resource type="AudioStream" uid="uid://dmlubmi2kge3b" path="res://assets/audio/music/blue_gras_in_hillbilly_country_-_no_copyright_music.ogg" id="13_g4f06"]
+[ext_resource type="PackedScene" uid="uid://daf1xbmqhi8or" path="res://scenes/GUI/get_ready_gui.tscn" id="13_lbuqq"]
 [ext_resource type="Script" path="res://music.gd" id="14_5443r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vquv8"]
@@ -67,6 +68,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 color = Color(0.972549, 1, 0.760784, 1)
 
 [node name="World" type="Node2D" parent="."]
@@ -112,7 +114,7 @@ position = Vector2(960, 1367)
 shape = SubResource("RectangleShape2D_vquv8")
 
 [node name="Hero" parent="World/MovingObjects/Camera2D" instance=ExtResource("6_skgbd")]
-position = Vector2(-455, 0)
+position = Vector2(-455, -138)
 
 [node name="Obstacles" type="Node2D" parent="World" node_paths=PackedStringArray("camera", "boundary_bottom_collision_shape")]
 script = ExtResource("7_081nh")
@@ -151,9 +153,10 @@ visible = false
 
 [node name="PauseMenu" parent="GUI" instance=ExtResource("11_pl0p4")]
 
+[node name="GetReadyGUI" parent="GUI" instance=ExtResource("13_lbuqq")]
+
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("13_g4f06")
-autoplay = true
 bus = &"Music"
 script = ExtResource("14_5443r")
 
