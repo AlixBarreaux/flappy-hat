@@ -9,11 +9,13 @@ class_name Obstacle
 @onready var camera: Camera2D = self.get_parent().camera
 @onready var boundary_bottom_collision_shape: CollisionShape2D = self.get_parent().boundary_bottom_collision_shape
 
+@onready var base_window_size = Vector2(1280, 720)
+
 # Self
 @onready var obstacle_passed_zone_collision_shape: CollisionShape2D = $ObstaclePassedZone/CollisionShape2D
-@onready var obstacle_passed_zone_half_height = obstacle_passed_zone_collision_shape.shape.size.y / 2.0
-@onready var top_height_obstacle_limit: float = get_window().size.y * 0.2
-@onready var bottom_height_obstacle_limit: float = get_window().size.y - obstacle_passed_zone_half_height
+@onready var obstacle_passed_zone_half_height: float = obstacle_passed_zone_collision_shape.shape.size.y / 2.0
+@onready var top_height_obstacle_limit: float = base_window_size.y * 0.2
+@onready var bottom_height_obstacle_limit: float = base_window_size.y - obstacle_passed_zone_half_height
 
 
 @onready var audio_stream_player: AudioStreamPlayer = $ObstaclePassedZone/AudioStreamPlayer
@@ -41,7 +43,7 @@ func on_game_over() -> void:
 func reset_to_new_random_position() -> void:
 	randomize()
 	var _random_y_position: float = randf_range(top_height_obstacle_limit, bottom_height_obstacle_limit)
-	self.global_position = Vector2(camera.global_position.x + (get_window().size.x), _random_y_position + top_height_obstacle_limit )
+	self.global_position = Vector2(camera.global_position.x + (base_window_size.x), _random_y_position + top_height_obstacle_limit )
 
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
